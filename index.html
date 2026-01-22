@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPGV | BioTech Portfolio</title>
+    <meta name="description" content="Rafael Vieira - Academic Portfolio. Computer Science & Bio-Informatics.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-tertiary: #1a1a1a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #888888;
+            --accent-red: #ff2d55;
+            --accent-red-glow: rgba(255, 45, 85, 0.4);
+            --accent-cyan: #00f0ff;
+            --accent-cyan-glow: rgba(0, 240, 255, 0.4);
+            --border-color: #2a2a2a;
+            --grid-color: rgba(0, 240, 255, 0.03);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Rajdhani', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Biotech Grid Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* DNA Helix Animation */
+        .dna-strand {
+            position: fixed;
+            right: -50px;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .dna-strand::before,
+        .dna-strand::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom,
+                    transparent,
+                    var(--accent-cyan),
+                    var(--accent-red),
+                    var(--accent-cyan),
+                    transparent);
+            animation: dnaWave 4s ease-in-out infinite;
+        }
+
+        .dna-strand::before {
+            left: 30px;
+        }
+
+        .dna-strand::after {
+            right: 30px;
+            animation-delay: -2s;
+        }
+
+        @keyframes dnaWave {
+
+            0%,
+            100% {
+                transform: translateY(-10px) scaleX(1);
+            }
+
+            50% {
+                transform: translateY(10px) scaleX(0.5);
+            }
+        }
+
+        /* Main Layout */
+        .main-container {
+            display: flex;
+            min-height: 100vh;
+            padding: 20px;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Left Column - 80% */
+        .content-column {
+            flex: 0 0 80%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Right Column - 20% */
+        .sidebar-column {
+            flex: 0 0 calc(20% - 20px);
+        }
+
+        /* Biotech Card Styling */
+        .bio-card {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-cyan));
+        }
+
+        .bio-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-cyan-glow) 0%, transparent 30%);
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            display: flex;
+            gap: 30px;
+            padding: 30px;
+        }
+
+
+
+
+
+
+
+        @keyframes borderGlow {
+
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+
+
+        .profile-placeholder {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .profile-placeholder .icon {
+            font-size: 3rem;
+            color: var(--accent-cyan);
+            margin-bottom: 10px;
+            opacity: 0.5;
+        }
+
+        /* Corner Accents */
+        .profile-frame .corner {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-color: var(--accent-red);
+            border-style: solid;
+        }
+
+        .profile-frame .corner.tl {
+            top: 8px;
+            left: 8px;
+            border-width: 2px 0 0 2px;
+        }
+
+        .profile-frame .corner.tr {
+            top: 8px;
+            right: 8px;
+            border-width: 2px 2px 0 0;
+        }
+
+        .profile-frame .corner.bl {
+            bottom: 8px;
+            left: 8px;
+            border-width: 0 0 2px 2px;
+        }
+
+        .profile-frame .corner.br {
+            bottom: 8px;
+            right: 8px;
+            border-width: 0 2px 2px 0;
+        }
+
+        /* Bio Text */
+        .profile-bio {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .profile-bio h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+            text-shadow: 0 0 20px var(--accent-cyan-glow);
+        }
+
+        .profile-bio .subtitle {
+            font-size: 1rem;
+            color: var(--accent-red);
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .profile-bio p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text-primary);
+            font-weight: 400;
+        }
+
+        .profile-bio .highlight {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        /* Links Section */
+        .links-section {
+            padding: 30px;
+        }
+
+        .section-header {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            color: var(--accent-red);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-header::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent-red), transparent);
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .link-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 25px 15px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-button::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-cyan));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .link-button:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 10px 40px rgba(0, 240, 255, 0.15);
+        }
+
+        .link-button:hover::before {
+            transform: scaleX(1);
+        }
+
+        .link-button .icon {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .link-button:hover .icon {
+            transform: scale(1.1);
+        }
+
+        .link-button:nth-child(1) .icon {
+            color: var(--accent-cyan);
+        }
+
+        .link-button:nth-child(2) .icon {
+            color: var(--accent-red);
+        }
+
+        .link-button:nth-child(3) .icon {
+            color: #00ff88;
+        }
+
+        .link-button:nth-child(4) .icon {
+            color: #ff8800;
+        }
+
+        .link-button span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* RSS Sidebar */
+        .rss-panel {
+            height: 100%;
+            padding: 25px;
+        }
+
+        .rss-panel .section-header {
+            font-size: 0.75rem;
+            margin-bottom: 25px;
+        }
+
+        .rss-panel .section-header::after {
+            display: none;
+        }
+
+        .rss-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .rss-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+        }
+
+        .podcast-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .podcast-item {
+            display: block;
+            padding: 15px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-left: 3px solid var(--accent-cyan);
+            border-radius: 0 6px 6px 0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .podcast-item:hover {
+            background: rgba(0, 240, 255, 0.05);
+            border-left-color: var(--accent-red);
+            transform: translateX(5px);
+        }
+
+        .podcast-item .podcast-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .podcast-item .podcast-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        /* Scan Line Effect */
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+            opacity: 0.1;
+            animation: scanline 8s linear infinite;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes scanline {
+            0% {
+                top: 0;
+            }
+
+            100% {
+                top: 100%;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .content-column,
+            .sidebar-column {
+                flex: 1 1 100%;
+            }
+
+            .profile-section {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .profile-image-container {
+                flex: 0 0 auto;
+                max-width: 300px;
+            }
+
+            .links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-bio h1 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            border-top: 1px solid var(--border-color);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+        }
+
+        .footer a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--accent-red);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Effects -->
+    <div class="scanline"></div>
+    <div class="dna-strand"></div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Content Column (80%) -->
+        <main class="content-column">
+            <!-- Profile Card -->
+            <section class="bio-card">
+                <div class="profile-section">
+                    <!-- Image Frame -->
+                    <div class="profile-image-container">
+                        <div class="profile-frame">
+                            <div class="corner tl"></div>
+                            <div class="corner tr"></div>
+                            <div class="corner bl"></div>
+                            <div class="corner br"></div>
+                            <div class="profile-placeholder">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bio Text -->
+                    <div class="profile-bio">
+                        <h1>Rafael Vieira</h1>
+                        <div class="subtitle">Solving Science Creatively</div>
+                        <p>
+                            With a BCs in Medical Biotechnology and a MCs in Bioinformatics and Computational Biology, I
+                            am fascinated by the application of informatics in understanding complex biological
+                            problems. I developed my MCs thesis through AptaCom -
+                            a machine learning model for aptamer-protein interaction prediction and a dataset of more
+                            than 4000 aptamers from a myriad of sources.
+                            In the past year, I dove into aptamer research through 3D modeling, molecular docking and
+                            molecular dynamics - collaborating in various projects.
+
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Links Card -->
+            <section class="bio-card">
+                <div class="links-section">
+                    <div class="section-header">External Links</div>
+                    <div class="links-grid">
+                        <a href="www.linkedin.com/in/rafael-v-29963a213" target="_blank" rel="noopener"
+                            class="link-button">
+                            <img style="width: 45px; height: 45px;" src="Assets/linkedin.png"></img>
+                            <br />
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://rpgv.github.io/AptaCom/" target="_blank" rel="noopener" class="link-button">
+                            <img style="width: 60px; height: 55px;" src="Assets/aptacom_icon.png"></img>
+                            <br />
+                            <span>AptaCom</span>
+                        </a>
+                        <a href="https://github.com/rpgv?tab=repositories" target="_blank" rel="noopener"
+                            class="link-button">
+                            <img style="width: 50px; height: 50px;" src="Assets/dna.png"></img>
+                            <br />
+                            <span>Projects</span>
+                        </a>
+                        <a href="mailto:rpgv2000@outlook.pt" target="_blank" rel="noopener" class="link-button">
+                            <img style="width: 50px; height: 50px;" src="Assets/contact.png"></img>
+                            <br />
+                            <span>Contact</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Sidebar Column (20%) -->
+        <aside class="sidebar-column">
+            <div class="bio-card rss-panel">
+                <div class="rss-title">Currently Listening</div>
+                <div class="rss-subtitle">(Podcasts)</div>
+
+                <div class="podcast-feed">
+                    <a href="https://theverge.com/the-vergecast" target="_blank" rel="noopener" class="podcast-item">
+                        <div class="podcast-name">The Vergecast</div>
+                        <div class="podcast-desc">Weekly discussions on the latest tech news.</div>
+
+                    </a>
+
+                    <a href="https://www.thenakedscientists.com/naked_scientists_podcast.xml" target="_blank"
+                        rel="noopener" class="podcast-item">
+                        <div class="podcast-name">Naked Scientists Podcast</div>
+                        <div class="podcast-desc">Science news stories, scientific breakthroughs and interviews with
+                            leading scientists.</div>
+
+                    </a>
+
+                    <a href="https://www.alieward.com/ologies" target="_blank" rel="noopener" class="podcast-item">
+                        <div class="podcast-name">Ologies with Alie Ward</div>
+                        <div class="podcast-desc">Ask smart people stupid questions.</div>
+
+                    </a>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Icons by <a href="https://www.flaticon.com/" target="_blank" rel="noopener">Flaticon</a></p>
+        <a href="https://www.flaticon.com/free-icons/contact" title="contact icons">Contact icons created by meaicon -
+            Flaticon | </a>
+        <a href="https://www.flaticon.com/free-icons/linkedin" title="linkedin icons">Linkedin icons created by Pixel
+            perfect - Flaticon | </a>
+        <a href="https://www.flaticon.com/free-icons/biology" title="biology icons">Biology icons created by Afian
+            Rochmah Afif - Flaticon</a>
+    </footer>
+</body>
+
+</html>
