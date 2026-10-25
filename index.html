@@ -497,17 +497,9 @@
                 flex: 0 0 auto;
                 max-width: 300px;
             }
-
-            .links-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
 
         @media (max-width: 600px) {
-            .links-grid {
-                grid-template-columns: 1fr;
-            }
-
             .profile-bio h1 {
                 font-size: 1.5rem;
             }
@@ -588,7 +580,7 @@
             <section class="bio-card">
                 <div class="links-section">
                     <div class="section-header">External Links</div>
-                    <div class="links-grid">
+                    <div>
                         <a href="https://www.linkedin.com/in/rafael-v-29963a213"
                             target="www.linkedin.com/in/rafael-v-29963a213" rel="noopener" class="link-button">
                             <img style="width: 45px; height: 45px;" src="Assets/linkedin.png"></img>
@@ -605,6 +597,12 @@
                             <img style="width: 50px; height: 50px;" src="Assets/dna.png"></img>
                             <br />
                             <span>Projects</span>
+                        </a>
+                        <a href="https://github.com/rpgv?tab=repositories" target="_blank" rel="noopener"
+                            class="link-button">
+                            <img style="width: 50px; height: 50px;" src="Assets/ORCID_iD.webp"></img>
+                            <br />
+                            <span>ORCID</span>
                         </a>
                         <a href="mailto:rpgv2000@outlook.pt" target="_blank" rel="noopener" class="link-button">
                             <img style="width: 50px; height: 50px;" src="Assets/contact.png"></img>
@@ -649,13 +647,21 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p>Icons by <a href="https://www.flaticon.com/" target="_blank" rel="noopener">Flaticon</a></p>
-        <a href="https://www.flaticon.com/free-icons/contact" title="contact icons">Contact icons created by meaicon -
-            Flaticon | </a>
-        <a href="https://www.flaticon.com/free-icons/linkedin" title="linkedin icons">Linkedin icons created by Pixel
-            perfect - Flaticon | </a>
-        <a href="https://www.flaticon.com/free-icons/biology" title="biology icons">Biology icons created by Afian
-            Rochmah Afif - Flaticon</a>
+        <ul>
+            <li>
+                <p>Icons by <a href="https://www.flaticon.com/" target="_blank" rel="noopener">Flaticon</a></p>
+                <a href="https://www.flaticon.com/free-icons/contact" title="contact icons">Contact icons created by meaicon -
+                    Flaticon | </a>
+                <a href="https://www.flaticon.com/free-icons/linkedin" title="linkedin icons">Linkedin icons created by Pixel
+                    perfect - Flaticon | </a>
+                <a href="https://www.flaticon.com/free-icons/biology" title="biology icons">Biology icons created by Afian
+                    Rochmah Afif - Flaticon</a>
+            </li>
+            <li>
+                This page was vibe-coded
+            </li>    
+
+        </ul>
     </footer>
 </body>
 
